@@ -1,0 +1,164 @@
+/* add the container styles to fit the two child divs */
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border : 1px solid black;
+    padding: 30px;
+    padding-top: 20px ;
+    padding-bottom: 20px ;
+    height: 100vh;
+    border-radius: 20px;
+    background-image: url("../static/images/arif-riyanto-rx31Ao60kcs-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  
+  /* Center the login form */
+  .login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 50%;
+    border: none;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    background: linear-gradient(to bottom, #ffffff 0%, #f1f1f1 100%);
+    transform: translate(0px, 100px);
+    /*background-image: url("../static/images/national-cancer-institute-BxXgTQEw1M4-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;*/
+
+  }
+  
+
+  /* Style the form inputs and button */
+  .login input[type="text"], .login button {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  .login button {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .login button:hover {
+    background-color: blue;
+  }
+
+
+
+  
+
+
+      /* Style the explainable AI visualizations */
+      #explainable-ai-visualizations {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+
+        width: 70%;
+        margin: 0 auto;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+ 
+        background-color: rgba(255, 255, 255, 0.3);
+
+      }
+
+      /*top-section div is 20% of the parent*/
+      #top-section {
+        width: 95%;
+        height: 20%;
+        margin: 0 auto;
+        padding: 20px;
+        border: none;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        border-radius: 10px;
+
+        background-color: rgba(255, 255, 255, 0);
+      }
+
+      /*selected-visualization div is 80% of the parent*/
+      #selected-visualization {
+        width: 95%;
+        height: 70%;
+        margin: 0 auto;
+        padding: 20px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        background-color: rgba(255, 255, 255, 0);
+        transform: translate(0px, 20px);
+      }
+
+      /* format the h2 element, give it a highlight*/
+      #explainable-ai-visualizations h2 {
+        color: white;
+        text-align: center;
+        font-size: 40px;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px #000000;
+      }
+
+
+  /* add styles for prediction and probability divs */
+  #prediction{
+    position: relative;
+    top: 10px;
+    left: 20px;
+    width: 200px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+  }
+  #probability {
+    position: relative;
+    top: -60px;
+    left: 250px;
+    width: 200px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+  }
+  #prediction h3,
+  #probability h3 {
+    text-align: left;
+  }
+
+  /* add styles for the select element, position it to the top right corner of its parent*/
+  #visualization, label {
+    position: relative;
+    top: -100px;
+    left: 67%;
+    width: auto;
+    background-color: rgba(7, 49, 25, 0.5);
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    text-align: center;
+  }
+
+  /*move the label to select position*/
+  label {
+    background-color: rgba(0, 0, 0, 0.5);
+  }

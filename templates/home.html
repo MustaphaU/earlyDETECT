@@ -2,34 +2,173 @@
 <html >
 <head>
   <meta charset="UTF-8">
+  <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
   <title>ML API</title>
+  <link rel="stylesheet" type="text/css" href="../static/styles.css">
+  <!--link d3.js v4-->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
 
 </head>
 
 <body>
- <div class="login">
-	<h1>Diabetes Prediction</h1>
+<div class="container">
+  <!-- <h2>Diabetes Prediction Tool</h2> -->
+  <div class="login">
     <form action="{{ url_for('predict_datapoint')}}" method="post">
-      <input type="text" name="Pregnancies" placeholder="Pregnancies" required="required" /><br>
-    	<input type="text" name="Glucose" placeholder="Glucose" required="required" /><br>
-        <input type="text" name="BloodPressure" placeholder="BloodPressure" required="required" /><br>
-        <input type="text" name="SkinThickness" placeholder="SkinThickness" required="required" /><br>
-        <input type="text" name="Insulin" placeholder="Insulin" required="required" /><br>
-        <input type="text" name="BMI" placeholder="BMI" required="required" /><br>
-        <input type="text" name="DiabetesPedigreeFunction" placeholder="DiabetesPedigreeFunction" required="required" /><br>
-        <input type="text" name="Age" placeholder="Age" required="required" /><br>
-
-
+      <h3>Depression Detection System</h3>
+      <input type="text" name="Speech_Speed" placeholder="Speech speed" required="required" /><br>
+    	<input type="text" name="avg_characters" placeholder="avg characters" required="required" /><br>
+        <input type="text" name="avg_nouns" placeholder="avg nouns" required="required" /><br>
+        <input type="text" name="temper_control_sentiment" placeholder="sentiment(0 0r 1): temper management" required="required" /><br>
+        <input type="text" name="recency_of_argument_sentiment" placeholder="sentiment(0 or 1): recency_of_argument+nature" required="required" /><br>
         <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
     </form>
+  </div>
+  <div id="explainable-ai-visualizations">
+      <div id="top-section">
+          <h2>Results and Visualizations</h2>
+          <div id="prediction">
+              <h3>Prediction: {{result}}</h3>
+          </div>
+        <div id="probability">
+          <h3>Probability(%): {{probability}}</h3>
+        </div>
+        <label for="visualization">Visualization:</label>
+        <select id="visualization">
+          <option value="lime-explanation">LIME Explanation</option>
+          <option value="decision-tree-99">Decision Tree (n_tree=99)</option>
+          <option value="feature-importance">Feature Importance</option>
+          <option value="clear">Clear</option>
+        </select>
+      </div>
+    <div id="selected-visualization"></div>
+  </div>
+</div>
 <body>
 
    <br>
    <br>
+ <script>
+
+const visualizationSelect = document.getElementById('visualization');
+const displayDiv = document.getElementById('selected-visualization');
+function createLimeExplanations() {
+    //load and display the lime explanation html file from the static folder
+    const limeExplanation = document.createElement('iframe');
+    limeExplanation.src = "../static/visualizations/lime_explanation.html";
+    limeExplanation.style.width = "100%";
+    limeExplanation.style.height = "50%";
+    //give it a background color
+    limeExplanation.style.backgroundColor = "lightblue";
+
+    //if the source of the image is not found, then display an error message in the div "not-found"
+    if (limeExplanation.src === ""){
+      displayDiv.innerHTML = "Not Found";
+    }
+    else{
+      displayDiv.appendChild(limeExplanation);
+      //create a div top hold the limenotes.html file
+      const limeNotes = document.createElement('div');
+      limeNotes.style.marginTop = "10px"; //add some margin to the top so that it is not too close to the iframe
+      limeNotes.style.width = "100%"; 
+      limeNotes.style.height = "43%";
+      limeNotes.style.overflow = "auto"; //add scroll bar to the div
+      displayDiv.appendChild(limeNotes);
+      //load and display the lime notes html file from the static folder
+      const limeNotesIframe = document.createElement('iframe');
+      limeNotesIframe.src = "../static/visualizations/limenotes.html";
+      limeNotesIframe.style.width = "100%";
+      limeNotesIframe.style.height = "100%";
+      //give it a background color
+      limeNotesIframe.style.backgroundColor = "lightblue";
+
+      limeNotes.appendChild(limeNotesIframe);
+    }
+  }
+  //run the function when the page loads
+  createLimeExplanations();
+
+//add event listener to the select element
+visualizationSelect.addEventListener('change', function(){
+  //clear the div
+  displayDiv.innerHTML = '';
+  //get the value of the selected option
+  const selectedVisualization = visualizationSelect.value;
+  //if the value is not clear, then display the visualization
+
+  if (selectedVisualization === "decision-tree-99") {
+    const decisionTreeDiv = document.createElement('div');
+    decisionTreeDiv.style.width = "100%";
+    decisionTreeDiv.style.height = "90%";
+    decisionTreeDiv.innerHTML = '<h3>Decision Tree Plot</h3>';
+    
+    const decisionTreeSvg = document.createElement('object');
+    decisionTreeSvg.data = "../static/visualizations/decision_tree.svg";
+    decisionTreeSvg.style.width = "100%";
+    decisionTreeSvg.style.height = "100%";
+    
+    const errorHandler = function() {
+      decisionTreeSvg.remove();
+      decisionTreeSvg.removeEventListener('error', errorHandler);
+      const errorMessage = document.createElement('div');
+      errorMessage.style.color = 'red';
+      errorMessage.innerHTML = '<h3>Error: Image not Found</h3><p>Please run a prediction job if you haven\'t</p>';
+      //position the error message in the center of the div
+      errorMessage.style.position = "absolute";
+      errorMessage.style.top = "50%";
+      errorMessage.style.left = "50%";
+      errorMessage.style.transform = "translate(-50%, -50%)";
+
+      displayDiv.appendChild(errorMessage);
+    };
+    
+
+    
+    decisionTreeSvg.addEventListener('error', errorHandler);
+    
+    decisionTreeDiv.appendChild(decisionTreeSvg);
+    displayDiv.appendChild(decisionTreeDiv);
+    
+    
+    
+  }
+  
+  else if (selectedVisualization==="lime-explanation"){
+    createLimeExplanations();
+  }
+  else if(selectedVisualization==="clear"){
+    return;
+  }
+  else if (selectedVisualization==="feature-importance"){
+    const FeatureImportanceDiv = document.createElement('div');
+    FeatureImportanceDiv.style.width = "100%";
+    FeatureImportanceDiv.style.height = "90%";
+    FeatureImportanceDiv.innerHTML = '<h3>Feature Importances</h3>';
+    //load and display the feature importances from the static folder
+    const FeatureImportanceSvg = document.createElement('img');
+    FeatureImportanceSvg.src = "../static/visualizations/rf_feature_importances.svg";
+    FeatureImportanceSvg.style.width = "100%";
+    FeatureImportanceSvg.style.height = "100%";
+
+    //if the source of the image is not found, then display an error message in the div "not-found"
+    if (FeatureImportanceSvg.src === ""){
+      displayDiv.innerHTML = "Not Found";
+    }
+    else{
+      FeatureImportanceDiv.appendChild(FeatureImportanceSvg);
+      displayDiv.appendChild(FeatureImportanceDiv);
+    }
+
+  }
+})
 
 
- </div>
- {{result}}
+
+  
+
+
+  
+ </script>
 
 </body>
 </html>
