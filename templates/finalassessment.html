@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Medical Report Form</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+    <style>
+
+
+        /* align the radio buttons to the left */
+        input[type="radio"] {
+            display: inline-block;
+            width: 10%;
+            margin-left: 4px;
+        }
+        #flex_container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("../static/images/online-marketing-hIgeoQjS_iE-unsplash.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+
+          }
+          
+        form {
+            margin-top: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            border-radius : 5px;
+            padding: 10px;
+            background-color: #0d0d0d;
+            width: auto;
+        }   
+
+        #full_form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+            border : 1px solid black;
+            align-items: center;
+            align-content: center;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+            width: 30%;
+            height: 70%;
+            background-color: rgba(255, 255, 255, 0.9);
+        
+        }
+    </style>
+    
+</head>
+<body>
+<div id = "flex_container"> 
+	<h1>Medical Report Form</h1>
+	<div id="full_form"><form>
+		<h2>Background Information</h2>
+		<label for="name">Name of Patient: *</label>
+		<input type="text" id="name" name="name" required><br>
+
+		<label for="sex">Sex: *</label>
+		<select id="sex" name="sex" required>
+			<option value="">Please select</option>
+			<option value="male">Male</option>
+			<option value="female">Female</option>
+			<option value="not_say">Prefer not to say</option>
+		</select><br>
+
+		<label for="age">Age: *</label>
+		<input type="number" id="age" name="age" required><br>
+
+		<h2>Presenting Problems</h2>
+		<label for="symptoms">Symptoms:</label><br>
+		<textarea id="symptoms" name="symptoms" rows="4" cols="50"></textarea><br>
+
+		<label for="frequency">Frequency of Symptoms:</label><br>
+		<input type="text" id="frequency" name="frequency"><br>
+
+		<h2>Mental Status Examination</h2>
+		<p>Answer the following questions:</p>
+		<label for="question1">1. Were you diagnosed with any chronic disease recently?</label><br>
+		<input type="radio" id="question1_yes" name="question1" value="yes">
+		<label for="question1_yes">Yes</label>
+		<input type="radio" id="question1_no" name="question1" value="no">
+		<label for="question1_no">No</label><br>
+
+		<label for="question2">2. Have you been ever diagnosed with any mental illness?</label><br>
+		<input type="radio" id="question2_yes" name="question2" value="yes">
+		<label for="question2_yes">Yes</label>
+		<input type="radio" id="question2_no" name="question2" value="no">
+		<label for="question2_no">No</label><br>
+
+		<label for="question3">3. Do little things trip you up and is it normal for you?</label><br>
+		<input type="radio" id="question3_yes" name="question3" value="yes">
+		<label for="question3_yes">Yes</label>
+		<input type="radio" id="question3_no" name="question3" value="no">
+		<label for="question3_no">No</label><br>
+
+		<label for="question4">4. Have you been feeling down lately?</label><br>
+		<input type="radio" id="question4_yes" name="question4" value="yes">
+		<label for="question4_yes">Yes</label>
+		<input type="radio" id="question4_no" name="question4" value="no">
+		<label for="question4_no">No</label><br>
+
+		<h2>Diagnostic Assessment</h2>
+		<label for="assessment">Final Assessment:</label><br>
+		<textarea id="assessment" name="assessment" rows="4" cols="50"></textarea><br>
+
+		<label for="recommendations">Treatment Recommendations:</label><br>
+        <textarea id="recommendations" name="recommendations" rows="4" cols="50"></textarea><br>
+
+        <button type="submit">Download Report</button>
+        <input type="reset" value="Reset">
+    </form>
+    </div>
+</div>
+
+
+<script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const doc = new jsPDF();
+        const formElements = event.target.elements;
+        const name = formElements.name.value;
+        const sex = formElements.sex.value;
+        const age = formElements.age.value;
+        const symptoms = formElements.symptoms.value;
+        const frequency = formElements.frequency.value;
+        const question1 = formElements.question1.value;
+        const question2 = formElements.question2.value;
+        const question3 = formElements.question3.value;
+        const question4 = formElements.question4.value;
+        const assessment = formElements.assessment.value;
+        const recommendations = formElements.recommendations.value;
+
+        doc.setFontSize(16);
+        doc.setTextColor(64);
+        doc.text("Medical Report", 14, 16);
+        doc.setLineWidth(0.5);
+        doc.line(14, 20, 90, 20);
+        doc.setFontSize(12);
+        doc.setFontStyle("bold");
+        doc.text(`Name of Patient: ${name}`, 10, 40);
+        doc.text(`Sex: ${sex}`, 10, 50);
+        doc.text(`Age: ${age}`, 10, 60);
+        doc.text(`Symptoms: ${symptoms}`, 10, 70);
+        doc.text(`Frequency of Symptoms: ${frequency}`, 10, 80);
+        doc.text(`1. Were you diagnosed with any chronic disease recently?: ${question1}`, 10, 90);
+        doc.text(`2. Have you been ever diagnosed with any mental illness?: ${question2}`, 10, 100);
+        doc.text(`3. Do little things trip you up and is it normal for you?: ${question3}`, 10, 110);
+        doc.text(`4. Have you been feeling down lately?: ${question4}`, 10, 120);
+        doc.text(`Final Assessment: ${assessment}`, 10, 130);
+        doc.text(`Treatment Recommendations: ${recommendations}`, 10, 140);
+        doc.setFontStyle("normal");
+        doc.text(`Signature/Date:`, 10, 160);
+
+        doc.save('medical_report.pdf');
+    });
+</script>
+
