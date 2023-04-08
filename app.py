@@ -30,6 +30,12 @@ explainer = lime.lime_tabular.LimeTabularExplainer(rf_data.values,feature_names=
 @app.route('/')
 def index():
     return render_template('index.html')
+
+#route for final assessment page
+@app.route('/finalassessment')
+def finalassessment():
+    return render_template('finalassessment.html')
+
 @app.route('/login', methods=['POST'])
 def login():
     username = request.form['username']
@@ -130,7 +136,6 @@ def predict_datapoint():
             plt.xlabel('Feature Importance')
             plt.ylabel('Feature')
             plt.title('Random Forest Model Feature Importances')
-            #plt.gcf().set_size_inches(15, 8)  # set the figure size 
             plt.savefig('static/visualizations/rf_feature_importances.svg', bbox_inches='tight')
 
 
@@ -150,6 +155,8 @@ def predict_datapoint():
     else:
         return render_template('home.html')
 
+# if __name__ == '__main__':
+#     app.run(debug=True)
 
 if __name__ == '__main__':
     from werkzeug.serving import run_simple
