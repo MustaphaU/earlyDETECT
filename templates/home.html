@@ -11,25 +11,25 @@
 </head>
 
 <body>
-<div class="container">
-  <!-- <h2>Diabetes Prediction Tool</h2> -->
-  <div class="login">
-    <form action="{{ url_for('predict_datapoint')}}" method="post">
-      <h3>Depression Detection System</h3>
-      <input type="text" name="Speech_Speed" placeholder="Speech speed" required="required" /><br>
-    	<input type="text" name="avg_characters" placeholder="avg characters" required="required" /><br>
+  <div class="container">
+    <div class="login">
+      <form action="{{ url_for('predict_datapoint')}}" method="post">
+        <h3>Depression Detection System</h3>
+        <input type="text" name="Speech_Speed" placeholder="Speech speed" required="required" /><br>
+        <input type="text" name="avg_characters" placeholder="avg characters" required="required" /><br>
         <input type="text" name="avg_nouns" placeholder="avg nouns" required="required" /><br>
         <input type="text" name="temper_control_sentiment" placeholder="sentiment(0 0r 1): temper management" required="required" /><br>
         <input type="text" name="recency_of_argument_sentiment" placeholder="sentiment(0 or 1): recency_of_argument+nature" required="required" /><br>
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-    </form>
-  </div>
-  <div id="explainable-ai-visualizations">
+        <button type="submit" id="predict-btn" class="btn btn-primary btn-block btn-large">Predict</button>
+        <button type="button" id="assess-btn" class="btn btn-secondary btn-block btn-large" onclick="location.href='/finalassessment'">My Assessment</button>
+      </form>
+    </div>
+    <div id="explainable-ai-visualizations">
       <div id="top-section">
-          <h2>Results and Visualizations</h2>
-          <div id="prediction">
-              <h3>Prediction: {{result}}</h3>
-          </div>
+        <h2>Results and Visualizations</h2>
+        <div id="prediction">
+          <h3>Prediction: {{result}}</h3>
+        </div>
         <div id="probability">
           <h3>Probability(%): {{probability}}</h3>
         </div>
@@ -41,14 +41,27 @@
           <option value="clear">Clear</option>
         </select>
       </div>
-    <div id="selected-visualization"></div>
+      <div id="selected-visualization"></div>
+    </div>
   </div>
-</div>
+  
+
+  
 <body>
 
    <br>
    <br>
  <script>
+  const predictBtn = document.getElementById("predict-btn");
+  const assessBtn = document.getElementById("assess-btn");
+
+  /*predictBtn.addEventListener("click", function() {
+    assessBtn.style.display = "block";
+  }); */
+
+  assessBtn.addEventListener("click", function() {
+    window.location.href = "/finalassessment";
+  });
 
 const visualizationSelect = document.getElementById('visualization');
 const displayDiv = document.getElementById('selected-visualization');
