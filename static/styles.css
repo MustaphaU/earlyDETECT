@@ -81,6 +81,16 @@
 
       }
 
+      /*assess-btn position should be colored dark green*/
+      #assess-btn {
+        background-color: rgba(7, 49, 25, 0.5);
+        color: white;
+      }
+      /*hover over color of the access-btn*/
+      #assess-btn:hover {
+        background-color: blueviolet;
+      }
+
       /*top-section div is 20% of the parent*/
       #top-section {
         width: 95%;
