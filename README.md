@@ -7,7 +7,7 @@ In this project we demonstrate a possible workflow for prescreening for depressi
   <li>average number of characters in response</li>
   <li>average number of nouns used in the response</li>
   <li>Speech speed</li>
-  <li>Sentiment of their response to `how are you at controlling your temper?`</li>
+  <li>Sentiment of their response to `how are you at controlling your temper`</li>
   <li>Sentiment of their response to `when was the last time you argued with someone and what was it about?`</li>
 </ul>
 
