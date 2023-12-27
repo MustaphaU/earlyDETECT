@@ -20,7 +20,7 @@ To watch the demo, click on the first image with the youtube icon.
 ![DDS_2](https://github.com/MustaphaU/earlyDETECT/assets/123378149/ba5a8ce7-ab84-42dd-97c7-415135ba0989)
 
 Here is the user flow or interaction:
-[![DDS_3](./for_readme/user_interaction.png)]
+![DDS_3](./for_readme/user_interaction.png)
 
 The architecture diagram is:
-[![DDS_4](./for_readme/architecture_dds.png)]
+![DDS_4](./for_readme/architecture_dds.png)
