@@ -17,7 +17,7 @@ To watch the demo, click on the first image with the YouTube icon.
 ![DDS_1](https://github.com/MustaphaU/earlyDETECT/assets/123378149/74e67d9d-ea39-4397-8895-c1452b944652)
 ![DDS_2](https://github.com/MustaphaU/earlyDETECT/assets/123378149/ba5a8ce7-ab84-42dd-97c7-415135ba0989)
 
-Here is the user flow or interaction:
+Here is the UML diagram:
 ![DDS_3](./for_readme/user_interaction.png)
 
 The architecture diagram is:
