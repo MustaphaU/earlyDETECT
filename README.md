@@ -6,8 +6,8 @@ In this project, we demonstrate a possible workflow for prescreening for depress
 - **Average number of characters in response**
 - **Average number of nouns used in the response**
 - **Speech speed**
-- **Sentiment of their response to "How are you at controlling your temper?"**
-- **Sentiment of their response to "When was the last time you argued with someone and what was it about?"**
+- Sentiment of their response to `How are you at controlling your temper?`
+- Sentiment of their response to `When was the last time you argued with someone and what was it about?`
 
 We also provide a possible explanation for the model's decision in terms of feature impact or contribution to every outcome. For each interpretation, we leverage LIME (Local Interpretable Model-Agnostic Explanations). After each inference, users can click on the visualization dropdown in the top right to view the LIME plots, Feature importance, and one of the decision trees.
 
