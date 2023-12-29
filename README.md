@@ -3,9 +3,9 @@
 Depression Detection System as part of a decision support tool.
 
 In this project, we demonstrate a possible workflow for prescreening for depression based on a trained ML model and five features. These features include:
-- **Average number of characters in response**
-- **Average number of nouns used in the response**
-- **Speech speed**
+- `Average number of characters in response`
+- `Average number of nouns used in the response`
+- `Speech speed`
 - Sentiment of their response to `How are you at controlling your temper?`
 - Sentiment of their response to `When was the last time you argued with someone and what was it about?`
 
