@@ -1,7 +1,7 @@
 # earlyDETECT
+A simple project demonstrating a deployed machine learning system for prescreening for the likelihood of depression.
 
-Depression Detection System as part of a decision support tool.
-
+### Description
 In this project, we demonstrate a possible workflow for prescreening for depression based on a trained ML model and five features. These features include:
 - `Average number of characters in response`
 - `Average number of nouns used in the response`
